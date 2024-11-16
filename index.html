@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>看图识人</title>
+    <link href="./style.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
+            <h1 class="text-3xl font-bold text-center mb-8 text-gray-800">看图识人</h1>
+            
+            <!-- 模式选择 -->
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2">模式：</label>
+                <div class="flex gap-4">
+                    <button id="sequentialMode" class="flex-1 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">顺序模式</button>
+                    <button id="randomMode" class="flex-1 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">随机模式</button>
+                </div>
+            </div>
+
+            <!-- 文件夹选择 -->
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2">选择图片文件夹：</label>
+                <input type="file" id="folderInput" webkitdirectory directory multiple
+                    class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"/>
+            </div>
+
+            <!-- 统计显示 -->
+            <div class="grid grid-cols-4 gap-4 mb-6">
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h3 class="font-semibold text-gray-700">总图片数</h3>
+                    <p id="totalImages" class="text-2xl font-bold text-blue-600">0</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h3 class="font-semibold text-gray-700">识别得分</h3>
+                    <p id="score" class="text-2xl font-bold text-green-600">0%</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h3 class="font-semibold text-gray-700">当前连续</h3>
+                    <p id="streak" class="text-2xl font-bold text-yellow-600">0</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h3 class="font-semibold text-gray-700">最佳连续</h3>
+                    <p id="bestStreak" class="text-2xl font-bold text-purple-600">0</p>
+                </div>
+            </div>
+
+            <!-- 图片显示 -->
+            <div class="mb-6">
+                <div id="imageContainer" class="aspect-video bg-gray-200 rounded-lg flex items-center justify-center">
+                    <p class="text-gray-500">请选择图片文件夹开始</p>
+                </div>
+            </div>
+
+            <!-- 提示区域 -->
+            <div class="mb-4 text-center">
+                <p id="hintText" class="text-gray-600 min-h-[1.5rem] text-xl font-mono"></p>
+            </div>
+
+            <!-- 答案结果显示 -->
+            <div class="mb-4">
+                <p id="answerResult" class="text-center text-lg font-bold min-h-[1.5rem]"></p>
+            </div>
+
+            <!-- 答案输入 -->
+            <div class="mb-6">
+                <input type="text" id="answerInput" placeholder="请输入姓名..."
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    disabled/>
+            </div>
+
+            <!-- 自动下一题选项 -->
+            <div class="mb-4 flex items-center justify-center gap-2">
+                <input type="checkbox" id="autoNext" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"/>
+                <label for="autoNext" class="text-gray-700">答对后自动下一题</label>
+            </div>
+
+            <!-- 控制按钮 -->
+            <div class="flex gap-4">
+                <button id="hintButton" class="flex-1 bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition" disabled>
+                    提示
+                </button>
+                <button id="checkAnswer" class="flex-1 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition" disabled>
+                    检查答案
+                </button>
+                <button id="nextImage" class="flex-1 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition" disabled>
+                    下一张
+                </button>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="/main.js"></script>
+</body>
+</html>
